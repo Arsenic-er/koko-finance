@@ -1,0 +1,41 @@
+# Stork Emotional — web + public ngrok tunnel (fixed domain).
+# CPU/RAM capped so it never starves the GPU/DL jobs on the host.
+# Secrets/domain are read from ./.env  (NGROK_AUTHTOKEN, NGROK_DOMAIN)
+services:
+  web:
+    build: .
+    image: stork_emotional_web:latest
+    container_name: stork_web
+    restart: unless-stopped
+    cpus: 2.0            # hard cap: at most 2 of 16 cores
+    cpu_shares: 256      # low priority vs. other host processes
+    mem_limit: 3g        # +1g headroom for the lazy-loaded FinBERT models
+    expose:
+      - "8000"
+    # Mount source so code/page edits apply without a rebuild (deps stay baked in image).
+    volumes:
+      - ./backend:/app/backend
+      - ./frontend:/app/frontend
+      - ./cache:/app/cache
+    command: uvicorn backend.app:app --host 0.0.0.0 --port 8000 --reload --reload-dir backend
+    networks:
+      - storknet
+
+  ngrok:
+    image: ngrok/ngrok:latest
+    container_name: stork_tunnel
+    restart: unless-stopped
+    # If NGROK_DOMAIN is set -> fixed URL; if empty -> ngrok quick tunnel (random URL).
+    command: http web:8000 ${NGROK_DOMAIN:+--domain=${NGROK_DOMAIN}}
+    environment:
+      NGROK_AUTHTOKEN: ${NGROK_AUTHTOKEN}
+    cpus: 0.5
+    mem_limit: 256m
+    depends_on:
+      - web
+    networks:
+      - storknet
+
+networks:
+  storknet:
+    driver: bridge

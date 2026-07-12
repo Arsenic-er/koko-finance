@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Koko Finance · 成交量异常收益分析</title>
+<link rel="stylesheet" href="/assets/app.css?v=11" />
+</head>
+<body>
+
+<!-- language entry screen -->
+<div class="splash" id="splash">
+  <div class="splash-logo">Koko<span> Finance</span></div>
+  <div class="splash-title">量化分析平台 · Quant Analysis Platform</div>
+  <div class="sub">请选择语言 / 請選擇語言 / Choose your language</div>
+  <div class="btns">
+    <button data-lang="zh">简体中文</button>
+    <button data-lang="tw">繁體中文（台灣）</button>
+    <button data-lang="en">English</button>
+  </div>
+</div>
+
+<!-- module chooser screen (after language) -->
+<div class="splash hidden" id="modSplash">
+  <div class="splash-logo">Koko<span> Finance</span></div>
+  <div class="sub" id="modChooseSub">选择功能模块</div>
+  <div class="mod-cards">
+    <div class="mod-card" data-mod="volume">
+      <div class="mc-icon">📊</div>
+      <div class="mc-title" id="mcVolT">成交量异常收益分析</div>
+      <div class="mc-desc" id="mcVolD">放量/缩量事件后 1~30 日收益规律 · 美股/A股/台股/币圈/汇率 · 3D曲面 · 季节性 · 波动预测</div>
+    </div>
+    <div class="mod-card" data-mod="sentiment">
+      <div class="mc-badge">NEW</div>
+      <div class="mc-icon">🧠</div>
+      <div class="mc-title" id="mcSenT">市场情绪分析</div>
+      <div class="mc-desc" id="mcSenD">输入代码自动抓取新闻 · FinBERT 本地 AI 判断情绪 · 六维主题 · 生成交互式报告</div>
+    </div>
+  </div>
+</div>
+
+<header>
+  <div class="logo">Koko<span> Finance</span></div>
+  <div class="toggle" id="module">
+    <button data-mod="volume" class="active">量价</button>
+    <button data-mod="sentiment">情绪</button>
+  </div>
+  <div class="spacer"></div>
+  <div class="toggle" id="market">
+    <button data-mk="us" class="active">美股</button>
+    <button data-mk="cn">A股</button>
+    <button data-mk="tw">台股</button>
+    <button data-mk="crypto">币圈</button>
+    <button data-mk="forex">汇率</button>
+  </div>
+  <div class="toggle" id="lang">
+    <button data-lang="zh" class="active">简</button>
+    <button data-lang="tw">繁</button>
+    <button data-lang="en">EN</button>
+  </div>
+</header>
+
+<div class="title">
+  <h1 id="appTitle">成交量异常收益分析</h1>
+  <p id="appSubtitle">VOLUME ANOMALY · RETURN ANALYSIS</p>
+  <div class="meta" id="appMeta"></div>
+</div>
+
+<div class="controls" id="controls">
+  <div class="searchbox">
+    <input id="symInput" type="text" autocomplete="off" />
+    <div class="dropdown" id="symDrop"></div>
+  </div>
+  <button id="analyzeBtn"></button>
+  <button id="resetBtn" class="ghost"></button>
+  <span class="hint" id="symHint"></span>
+</div>
+
+<div class="scale" id="scale"></div>
+
+<nav class="tabs" id="tabs"></nav>
+
+<div class="help" id="help">
+  <button class="help-btn" id="helpBtn">ⓘ <span id="helpLabel">名词解释</span></button>
+  <div class="help-pop" id="helpPop"></div>
+</div>
+
+<main class="wrap" id="view">
+  <div class="loading" id="loading">…</div>
+</main>
+
+<main class="wrap" id="sentView"></main>
+
+<footer id="footer"></footer>
+
+<script src="/assets/echarts.min.js"></script>
+<script src="/assets/echarts-gl.min.js"></script>
+<script src="/assets/app.js?v=11"></script>
+<script src="/assets/sent.js?v=11"></script>
+</body>
+</html>
