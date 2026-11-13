@@ -1,0 +1,90 @@
+name: Bug report
+description: Report a market-data, volume-analysis, sentiment, or application problem.
+title: '[Bug]: '
+body:
+- type: dropdown
+  id: component
+  attributes:
+    label: Affected component
+    options:
+    - Market-data retrieval
+    - Volume anomaly and forward returns
+    - Seasonality or correlations
+    - Volatility forecast
+    - News or FinBERT sentiment
+    - Charts or interface
+    - Docker or backend startup
+    - Other / unsure
+  validations:
+    required: true
+- type: input
+  id: version
+  attributes:
+    label: Version or commit SHA
+  validations:
+    required: true
+- type: textarea
+  id: summary
+  attributes:
+    label: What happened?
+    placeholder: 'Example: The same volume event appears on different dates in the
+      chart and exported results.'
+  validations:
+    required: true
+- type: textarea
+  id: steps
+  attributes:
+    label: Steps to reproduce
+    placeholder: '1. Select the market, symbol, provider, and date range.
+
+      2. Run the volume-event analysis with the parameters below.
+
+      3. Compare chart timestamps with the exported event rows.'
+  validations:
+    required: true
+- type: textarea
+  id: expected
+  attributes:
+    label: Expected behavior
+    placeholder: Chart and export timestamps should use the documented market calendar
+      and time zone.
+  validations:
+    required: true
+- type: textarea
+  id: context
+  attributes:
+    label: Market, data, and analysis settings
+    placeholder: 'Market and symbol:
+
+      Data provider:
+
+      Date range and time zone:
+
+      Bar interval:
+
+      Analysis module and parameters:
+
+      News timestamp and FinBERT model (if relevant):
+
+      Expected and observed values:'
+- type: textarea
+  id: environment
+  attributes:
+    label: Environment
+    placeholder: 'Operating system:
+
+      Docker or Python environment:
+
+      Browser version:
+
+      Relevant dependency versions:
+
+      Network or provider error (if any):'
+  validations:
+    required: true
+- type: textarea
+  id: evidence
+  attributes:
+    label: Logs, screenshots, or a minimal example
+    description: Include the smallest example or log excerpt needed to reproduce the
+      problem.

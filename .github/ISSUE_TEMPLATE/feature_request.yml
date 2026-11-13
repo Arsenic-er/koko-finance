@@ -1,0 +1,55 @@
+name: Feature request
+description: Suggest an improvement to koko-finance.
+title: '[Feature]: '
+body:
+- type: dropdown
+  id: component
+  attributes:
+    label: Affected component
+    options:
+    - Market-data retrieval
+    - Volume anomaly and forward returns
+    - Seasonality or correlations
+    - Volatility forecast
+    - News or FinBERT sentiment
+    - Charts or interface
+    - Docker or backend startup
+    - Other / unsure
+  validations:
+    required: true
+- type: textarea
+  id: problem
+  attributes:
+    label: Problem or use case
+    placeholder: 'Example: I want to compare volume events across data providers with
+      aligned timestamps.'
+  validations:
+    required: true
+- type: textarea
+  id: proposal
+  attributes:
+    label: Proposed solution
+    placeholder: 'Example: Add a provider-comparison view that displays time zone,
+      interval, and missing bars.'
+  validations:
+    required: true
+- type: textarea
+  id: alternatives
+  attributes:
+    label: Alternatives considered
+    description: Describe other approaches or current workarounds, if any.
+- type: textarea
+  id: acceptance
+  attributes:
+    label: Acceptance criteria
+    placeholder: 'Provider, market calendar, time zone, and bar interval are recorded.
+
+      Missing bars remain visible.
+
+      Historical evaluation does not use future information.'
+- type: textarea
+  id: context
+  attributes:
+    label: Additional context
+    description: Add related issues, small examples, design sketches, or references
+      if useful.
